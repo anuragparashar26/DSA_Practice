@@ -17,5 +17,3 @@ int main() {
     TOH(n, 'A', 'C', 'B');
     return 0;
 }
-
-
