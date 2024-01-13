@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 5
+#define MAX 5
 void cqinsert();
 void cqdelete();
+void cqstatus();
 void cqdisplay();
 
 int front=-1;
 int rear=-1;
-int cq[N];
+int cq[MAX];
 
 void cqinsert() {
     int item;
-    if(front==(rear+1)%N)
+    if(front==(rear+1)%MAX)
     {
     printf("Queue Overflow\n");
     }
@@ -22,7 +23,7 @@ void cqinsert() {
         front=rear=0;
         }
         else {
-        rear=(rear+1)%N;
+        rear=(rear+1)%MAX;
     }
     cq[rear]=item;
     }}
@@ -36,8 +37,20 @@ void cqdelete() {
     if (front==rear) {
         front=rear=-1;
     }
-    else front=(front+1)%N;
+    else front=(front+1)%MAX;
 }}
+
+void cqstatus() {
+    if (front==(rear+1)%MAX) {
+        printf("Queue Overflow\n");
+    }
+    else if (front==-1) {
+        printf("Queue underflow\n");
+    }
+    else {
+        printf("Queue is neither underflowed nor overflowed.\n");
+    }
+}
 
 void cqdisplay() {
     int i;
@@ -50,7 +63,7 @@ void cqdisplay() {
                 printf("%d ", cq[i]);
             }
         } else {
-            for (i = front; i < N; i++) {
+            for (i = front; i < MAX; i++) {
                 printf("%d ", cq[i]);
             }
             for (i = 0; i <= rear; i++) {
@@ -67,7 +80,7 @@ int main()
 int ch; 
 do
 {
-printf("1.Insert\t2.Delete\t3.Display\t 4.Exit\n");
+printf("1.Insert\t2.Delete\t3.Underflow/Overflow\t 4.Display\t5.Exit\n");
 printf("Enter your choice\n");
 scanf("%d",&ch);
 switch(ch)
@@ -78,14 +91,16 @@ break;
 case 2: cqdelete();
 break;
 
-case 3: cqdisplay(); 
+case 3: cqstatus();
 break;
 
-case 4: exit(0);
+case 4: cqdisplay(); 
+break;
+
+case 5: exit(0);
 break;
 
 default: printf("Invalid choice\n");
 }
-}while(ch!=4);
-return 0;
+}while(ch<=5);
 }

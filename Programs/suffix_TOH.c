@@ -1,4 +1,5 @@
 #include<stdio.h> 
+#include <stdlib.h>
 #include<math.h>
 #include <ctype.h>
 
@@ -62,7 +63,7 @@ void tow(int n, char S, char D, char A) {
 void main() {
     int ch;
     do {
-        printf("1. Evaluation of postfix expression: \t 2. Tower of Hanoi\n");
+        printf("1. Evaluation of postfix expression 2. Tower of Hanoi 3. Exit\n");
         printf("Enter your choice:\n");
         scanf("%d", &ch);
 
@@ -73,6 +74,8 @@ void main() {
             case 2: printf("Enter the number of disks:\n");
                     scanf("%d", &n);
                     tow(n, 'A', 'C', 'B');
+                    break;
+            case 3: exit(0);
                     break;
         }
     }while(ch<=2);

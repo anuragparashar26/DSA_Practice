@@ -1,8 +1,10 @@
 #include<stdio.h>
-#define MAX 5
+#include <stdlib.h>
+#define MAX 20
 void pal();
 void push();
 int pop();
+void status();
 void display();
 
 int stk[MAX],top= -1,ele,i; 
@@ -60,6 +62,17 @@ top--;
 return ele;
 }
 
+void status() {
+    if (top == MAX - 1) {
+        printf("Stack Overflow\n");
+    }
+    else if (top == -1) {
+        printf("Stack underflow\n");
+    }
+    else {
+        printf("Stack is neither underflowed nor overflowed.\n");
+    }
+}
 
 void display()
 {
@@ -79,7 +92,7 @@ void main()
 int ch; 
 do
 {
-printf("1.Push, 2.Pop 3. Display 4. Palindrome\n");
+printf("1.Push, 2.Pop 3. Palindrome 4. Underflow/Overflow 5. Display 6. Exit\n");
 printf("Enter your choice\n");
 scanf("%d",&ch);
 switch(ch)
@@ -94,14 +107,21 @@ printf("Element deleted is %d\n",ele);
 break;
 
 case 3:
-display(); 
+pal();
 break;
 
 case 4:
-pal(); 
+status();
+break;
+
+case 5:
+display();
+break;
+
+case 6: exit(1);
 break;
 
 default: printf("invalid choice\n");
 }
-}while(ch<=4);
+}while(ch<=6);
 }
