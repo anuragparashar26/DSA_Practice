@@ -20,7 +20,7 @@ void str(char s[],char p[],char r[],char f[]) {
             j=0;
         }
     }
-    f[t]!='\0';
+    f[t]='\0';
     if(found==1) {
         printf("Resultant string is:\n");
         puts(f); 
