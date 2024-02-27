@@ -39,23 +39,21 @@ void create() {
     }
 }
 
-void insert_end(){
-    NODE *temp,*nn; 
+void insert_end() {
+    NODE *nn, *temp;
     nn=(NODE*)malloc(sizeof(NODE));
-    printf("Enter the ssn,name,dept,designation,salary,phno:\n"); 
+    temp=first;
+    printf("Enter the ssn,name,dept,designation,salary,phno:\n");
     scanf("%s%s%s%s%s%s",nn->ssn,nn->name,nn->dept,nn->desg,nn->sal,nn->phno);
-    if(first==NULL){
-        nn->rlink=NULL;
-        nn->llink=NULL;
-        first=nn;
+    nn->rlink=NULL;
+    if (first == NULL) {
+        first = nn;
         return;
     }
-    temp=first;
-    while(temp->rlink!=NULL)
-    temp=temp->rlink;
+    while(temp->rlink != NULL) {
+        temp=temp->rlink;
+    }
     temp->rlink=nn;
-    nn->llink=temp;
-    nn->rlink=NULL;
 }
 
 void insert_front(){
