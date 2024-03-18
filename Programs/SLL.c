@@ -47,6 +47,44 @@ void delete_front() {
     free(temp);
 }
 
+void insert_end() {
+    NODE *nn, *temp;
+    nn = (NODE*)malloc(sizeof(NODE));
+    printf("\nEnter Details");
+    printf("\nEnter USN: Name: Branch: Sem: Phone:\n"); 
+    scanf("%s%s%s%s%s",nn->usn,nn->name,nn->branch,nn->sem,nn->phno);
+    nn->link = NULL;
+
+    if (first == NULL) {
+        first = nn;
+    } else {
+        temp = first;
+        while (temp->link != NULL) {
+            temp = temp->link;
+        }
+        temp->link = nn;
+    }
+}
+void delete_end() {
+    NODE *temp, *prev;
+    if (first == NULL) {
+        printf("\nList is empty.");
+        return;
+    }
+    if (first->link == NULL) {
+        free(first);
+        first = NULL;
+    } else {
+        temp = first;
+        while (temp->link != NULL) {
+            prev = temp;
+            temp = temp->link;
+        }
+        free(temp);
+        prev->link = NULL;
+    }
+}
+
 void display() {
     int c=0;
     NODE *temp;
@@ -85,7 +123,7 @@ void stack() {
 void main() {
     int ch;
     do {
-        printf("1.Create 2.Display 3.Stack\n"); 
+        printf("1.Create 2.Display 3.Stack 4. Insert at End 5. Delete at end\n"); 
         printf("Enter your choice:\n"); 
         scanf("%d",&ch);
         switch(ch) {
@@ -95,7 +133,11 @@ void main() {
             break;
             case 3:stack();
             break;
+            case 4: insert_end();
+            break;
+            case 5: delete_end();
+            break;
             default: printf("Invalid Choice.\n");
         }
-    }while(ch<=3);
+    }while(ch<=5);
 }
